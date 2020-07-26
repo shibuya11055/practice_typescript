@@ -1,17 +1,17 @@
 "use strict";
 class Person {
-    constructor(initName) {
+    // 初期化時の処理をconstructorに記述する
+    constructor(initName, initAge) {
         this.name = initName;
+        this.age = initAge;
+    }
+    incrementAge() {
+        this.age += 1;
     }
     greeting() {
-        console.log(`Hello! ${this.name}`);
+        console.log(`Hello! ${this.name}. I am ${this.age} years old.`);
     }
 }
-const kyohei = new Person('Kyohei');
-console.log(kyohei);
+const kyohei = new Person('Kyohei', 31);
+kyohei.incrementAge();
 kyohei.greeting();
-const another = {
-    name: 'another_kyohei',
-    anotherGreeting: kyohei.greeting
-};
-another.anotherGreeting();

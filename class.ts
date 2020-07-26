@@ -1,20 +1,22 @@
 class Person {
-  name: string;
-  constructor(initName: string) {
+  name: string; //何も書かなければpublic
+  private age: number; //privateをつけることによって、classの中からしかageにアクセスできない。
+
+  // 初期化時の処理をconstructorに記述する
+  constructor(initName: string, initAge: number) {
     this.name = initName;
+    this.age = initAge;
   }
 
-  greeting(this: { name: string }) {
-    console.log(`Hello! ${this.name}`)
+  incrementAge() {
+    this.age += 1;
   }
-}
 
-const kyohei = new Person('Kyohei');
-console.log(kyohei)
+  greeting(this: Person) {
+    console.log(`Hello! ${this.name}. I am ${this.age} years old.`)
+  }
+}　
+
+const kyohei = new Person('Kyohei', 31);
+kyohei.incrementAge();
 kyohei.greeting();
-
-const another = {
-  name: 'another_kyohei',
-  anotherGreeting: kyohei.greeting
-}
-another.anotherGreeting();
